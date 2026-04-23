@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="hook"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\zydis\;CMake Files\zydis\dependencies\;CMake Files\zydis\dependencies\zycore\;CMake Files\zydis\dependencies\zycore\cmake\;CMake Files\zydis\cmake\;CMake Files\subhook\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="x64_dispatcher">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/libx64_dispatcher.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSUBHOOK_STATIC"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 x64_dispatcher"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="x64_dispatcher/fast">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/libx64_dispatcher.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSUBHOOK_STATIC"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 x64_dispatcher/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="package">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 package"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hook">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/libhook.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSUBHOOK_STATIC"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/subhook"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 hook"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hook/fast">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/libhook.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSUBHOOK_STATIC"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/subhook"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 hook/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="package_source">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 package_source"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Zydis">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/zydis/libZydis.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/zydis"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+					<Add option="-DZYDIS_EXPORTS"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/src"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/Makefile&quot;  VERBOSE=1 Zydis"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Zydis/fast">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/zydis/libZydis.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/zydis"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+					<Add option="-DZYDIS_EXPORTS"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/src"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/Makefile&quot;  VERBOSE=1 Zydis/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Zycore">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/zydis/zycore/libZycore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+					<Add option="-DZYCORE_EXPORTS"/>
+					<Add option="-D_GNU_SOURCE"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 Zycore"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Zycore/fast">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/zydis/zycore/libZycore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+					<Add option="-DZYCORE_EXPORTS"/>
+					<Add option="-D_GNU_SOURCE"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 Zycore/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Continuous">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 Continuous"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="subhook">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/subhook/libsubhook.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSUBHOOK_IMPLEMENTATION"/>
+					<Add option="-DSUBHOOK_SEPARATE_SOURCE_FILES"/>
+					<Add option="-DSUBHOOK_STATIC"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/subhook"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 subhook"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="subhook/fast">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/subhook/libsubhook.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSUBHOOK_IMPLEMENTATION"/>
+					<Add option="-DSUBHOOK_SEPARATE_SOURCE_FILES"/>
+					<Add option="-DSUBHOOK_STATIC"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/subhook"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 subhook/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Nightly">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 Nightly"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Experimental">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 Experimental"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/cube/loadlibrary/intercept/src/hook_x86_64.c">
+			<Option target="hook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/src/x64_dispatcher.asm">
+			<Option target="x64_dispatcher"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook.c">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook.h">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook_private.h">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook_unix.c">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook_x86.c">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Memory.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Process.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Synchronization.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Terminal.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Thread.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Allocator.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/ArgParse.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Bitset.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Comparison.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Defines.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Format.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/LibC.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/List.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Object.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Status.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/String.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Types.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Vector.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Zycore.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Memory.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Process.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Synchronization.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Terminal.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Thread.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Allocator.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/ArgParse.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Bitset.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Format.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/List.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/String.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Vector.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Zycore.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Decoder.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/DecoderTypes.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Formatter.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/FormatterBuffer.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Internal/DecoderData.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Internal/FormatterATT.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Internal/FormatterBase.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Internal/FormatterIntel.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Internal/SharedData.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Internal/String.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/MetaInfo.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Mnemonic.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Register.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/SharedTypes.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/ShortString.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Status.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Utils.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/include/Zydis/Zydis.h">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/Decoder.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/DecoderData.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/Formatter.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/FormatterATT.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/FormatterBase.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/FormatterBuffer.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/FormatterIntel.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/MetaInfo.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/Mnemonic.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/Register.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/SharedData.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/String.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/Utils.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/src/Zydis.c">
+			<Option target="Zydis"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\zydis\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\zydis\dependencies\zycore\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/cmake/zycore-config.cmake.in">
+			<Option virtualFolder="CMake Files\zydis\dependencies\zycore\cmake\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/cmake/zydis-config.cmake.in">
+			<Option virtualFolder="CMake Files\zydis\cmake\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\subhook\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

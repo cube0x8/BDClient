@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhook.a  CMakeFiles/hook.dir/src/hook_x86_64.c.o
+/usr/bin/ranlib libhook.a

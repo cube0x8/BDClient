@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Zycore"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\zydis\;CMake Files\zydis\dependencies\;CMake Files\zydis\dependencies\zycore\;CMake Files\zydis\dependencies\zycore\cmake\;CMake Files\zydis\cmake\;CMake Files\subhook\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Zycore">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/zydis/zycore/libZycore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+					<Add option="-DZYCORE_EXPORTS"/>
+					<Add option="-D_GNU_SOURCE"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 Zycore"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Zycore/fast">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/zydis/zycore/libZycore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+					<Add option="-DZYCORE_EXPORTS"/>
+					<Add option="-D_GNU_SOURCE"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/build_test/zydis/zycore"/>
+					<Add directory="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 Zycore/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/zydis/zycore/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Memory.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Process.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Synchronization.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Terminal.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/API/Thread.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Allocator.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/ArgParse.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Bitset.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Comparison.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Defines.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Format.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/LibC.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/List.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Object.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Status.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/String.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Types.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Vector.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/include/Zycore/Zycore.h">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Memory.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Process.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Synchronization.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Terminal.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/API/Thread.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Allocator.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/ArgParse.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Bitset.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Format.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/List.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/String.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Vector.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/src/Zycore.c">
+			<Option target="Zycore"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\zydis\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\zydis\dependencies\zycore\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/cmake/zycore-config.cmake.in">
+			<Option virtualFolder="CMake Files\zydis\dependencies\zycore\cmake\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/cmake/zydis-config.cmake.in">
+			<Option virtualFolder="CMake Files\zydis\cmake\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\subhook\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

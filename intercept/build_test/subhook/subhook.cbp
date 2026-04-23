@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="subhook"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\zydis\;CMake Files\zydis\dependencies\;CMake Files\zydis\dependencies\zycore\;CMake Files\zydis\dependencies\zycore\cmake\;CMake Files\zydis\cmake\;CMake Files\subhook\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Continuous">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 Continuous"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="subhook">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/subhook/libsubhook.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSUBHOOK_IMPLEMENTATION"/>
+					<Add option="-DSUBHOOK_SEPARATE_SOURCE_FILES"/>
+					<Add option="-DSUBHOOK_STATIC"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/subhook"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 subhook"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="subhook/fast">
+				<Option output="/home/cube/loadlibrary/intercept/build_test/subhook/libsubhook.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSUBHOOK_IMPLEMENTATION"/>
+					<Add option="-DSUBHOOK_SEPARATE_SOURCE_FILES"/>
+					<Add option="-DSUBHOOK_STATIC"/>
+					<Add directory="/home/cube/loadlibrary/intercept/./include"/>
+					<Add directory="/home/cube/loadlibrary/intercept/subhook"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 subhook/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Nightly">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 Nightly"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Experimental">
+				<Option working_dir="/home/cube/loadlibrary/intercept/build_test/subhook"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 Experimental"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/cube/loadlibrary/intercept/build_test/subhook/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook.c">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook.h">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook_private.h">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook_unix.c">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/subhook_x86.c">
+			<Option target="subhook"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\zydis\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\zydis\dependencies\zycore\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/dependencies/zycore/cmake/zycore-config.cmake.in">
+			<Option virtualFolder="CMake Files\zydis\dependencies\zycore\cmake\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/zydis/cmake/zydis-config.cmake.in">
+			<Option virtualFolder="CMake Files\zydis\cmake\"/>
+		</Unit>
+		<Unit filename="/home/cube/loadlibrary/intercept/subhook/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\subhook\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

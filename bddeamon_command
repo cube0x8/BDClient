@@ -1,0 +1,1 @@
+echo 'SCAN /tmp/example.exe' | socat -T 90 -t 90 - UNIX-CONNECT:/tmp/bdldr.sock

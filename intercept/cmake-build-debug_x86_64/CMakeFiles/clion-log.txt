@@ -1,0 +1,4 @@
+/home/cube/clion-2020.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_BUILD_TYPE=Debug -DARCH:STRING=x64 -G "CodeBlocks - Unix Makefiles" /home/cube/loadlibrary/intercept
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/cube/loadlibrary/intercept/cmake-build-debug_x86_64

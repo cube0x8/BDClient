@@ -1,0 +1,2 @@
+/usr/bin/ar cr libx64_dispatcher.a  CMakeFiles/x64_dispatcher.dir/src/x64_dispatcher.asm.o 
+/usr/bin/ranlib libx64_dispatcher.a 

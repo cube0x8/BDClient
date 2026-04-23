@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/check_hook.dir/check_hook_x64.c.o  -o check_hook  -lcheck_pic -lrt -lm -lsubunit -lpthread ../libhook.a ../zydis/libZydis.a ../zydis/zycore/libZycore.a -lpthread ../subhook/libsubhook.a ../libx64_dispatcher.a 

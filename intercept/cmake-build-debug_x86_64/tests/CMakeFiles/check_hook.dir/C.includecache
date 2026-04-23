@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/hook.h
+
+/home/cube/loadlibrary/intercept/tests/check_hook_x64.c
+check.h
+-
+stdlib.h
+-
+stdbool.h
+-
+stdio.h
+-
+hook.h
+/home/cube/loadlibrary/intercept/tests/hook.h
+

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libZycore.a  CMakeFiles/Zycore.dir/src/Allocator.c.o CMakeFiles/Zycore.dir/src/ArgParse.c.o CMakeFiles/Zycore.dir/src/Bitset.c.o CMakeFiles/Zycore.dir/src/Format.c.o CMakeFiles/Zycore.dir/src/List.c.o CMakeFiles/Zycore.dir/src/String.c.o CMakeFiles/Zycore.dir/src/Vector.c.o CMakeFiles/Zycore.dir/src/Zycore.c.o CMakeFiles/Zycore.dir/src/API/Memory.c.o CMakeFiles/Zycore.dir/src/API/Process.c.o CMakeFiles/Zycore.dir/src/API/Synchronization.c.o CMakeFiles/Zycore.dir/src/API/Terminal.c.o CMakeFiles/Zycore.dir/src/API/Thread.c.o
+/usr/bin/ranlib libZycore.a
