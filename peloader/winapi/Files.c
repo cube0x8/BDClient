@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <limits.h>
 
 #include "winnt_types.h"
 #include "codealloc.h"
@@ -44,6 +45,49 @@ extern void WINAPI SetLastError(DWORD dwErrCode);
 #define FILE_ATTRIBUTE_DIRECTORY 16
 
 #define INVALID_FILE_ATTRIBUTES -1;
+
+static FILE *open_existing_with_plugins_fallback(const char *path) {
+    FILE *handle = fopen(path, "r");
+    const char *basename = NULL;
+    size_t dir_len;
+    size_t fallback_len;
+    char *fallback_path;
+
+    if (handle != NULL) {
+        return handle;
+    }
+
+    if (strstr(path, "/Plugins/") != NULL) {
+        return NULL;
+    }
+
+    basename = strrchr(path, '/');
+    if (basename == NULL || basename[1] == '\0') {
+        return NULL;
+    }
+    basename += 1;
+    dir_len = (size_t)(basename - path);
+    if (dir_len == 0) {
+        return NULL;
+    }
+
+    fallback_len = dir_len + strlen("Plugins/") + strlen(basename) + 1;
+    fallback_path = (char *)malloc(fallback_len);
+    if (fallback_path == NULL) {
+        return NULL;
+    }
+
+    memcpy(fallback_path, path, dir_len);
+    memcpy(fallback_path + dir_len, "Plugins/", strlen("Plugins/"));
+    memcpy(fallback_path + dir_len + strlen("Plugins/"), basename, strlen(basename) + 1);
+
+    handle = fopen(fallback_path, "r");
+    if (handle != NULL) {
+        DebugLog("CreateFile fallback: %s => %p", fallback_path, handle);
+    }
+    free(fallback_path);
+    return handle;
+}
 
 static DWORD WINAPI GetFileAttributesW(PVOID lpFileName) {
     DWORD Result = FILE_ATTRIBUTE_NORMAL;
@@ -137,7 +181,7 @@ static HANDLE WINAPI CreateFileA(PCHAR lpFileName, DWORD dwDesiredAccess, DWORD 
 
     switch (dwCreationDisposition) {
         case OPEN_EXISTING:
-            FileHandle = fopen(&filename_copy[filename_index], "r");
+            FileHandle = open_existing_with_plugins_fallback(&filename_copy[filename_index]);
             break;
         case CREATE_ALWAYS:
             FileHandle = fopen(&filename_copy[filename_index], "wb");
@@ -209,7 +253,7 @@ CreateFileW(PWCHAR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, PVOID l
                 FileHandle = fopen("/dev/null", "r");
             }
             else {
-                FileHandle = fopen(filename_copy, "r");
+                FileHandle = open_existing_with_plugins_fallback(filename_copy);
             }
             
             break;
@@ -239,7 +283,7 @@ exit:
 
     free(filename);
 
-    SetLastError(ERROR_FILE_NOT_FOUND);
+    FileHandle ? SetLastError(0) : SetLastError(ERROR_FILE_NOT_FOUND);
     return FileHandle ? FileHandle : INVALID_HANDLE_VALUE;
 }
 

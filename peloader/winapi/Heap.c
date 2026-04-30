@@ -57,7 +57,7 @@ PVOID WINAPI HeapAlloc(HANDLE hHeap, DWORD dwFlags, SIZE_T dwBytes) {
 }
 
 BOOL WINAPI HeapFree(HANDLE hHeap, DWORD dwFlags, PVOID lpMem) {
-    DebugLog("%p, %#x, %p, %d", hHeap, dwFlags, lpMem, heap_free_count);
+    //DebugLog("%p, %#x, %p, %d", hHeap, dwFlags, lpMem, heap_free_count);
     //LogMessage("%p, %#x, %p, %d", hHeap, dwFlags, lpMem, heap_free_count);
     heap_free_count += 1;
     allocation_tracker_record_free(lpMem);

@@ -84,7 +84,7 @@ class XlmrdReturnBreakpoint(gdb.Breakpoint):
 
 class VirtualProtectBreakpoint(gdb.Breakpoint):
     def __init__(self):
-        super().__init__("winapi/Memory.c:166", internal=False)
+        super().__init__("winapi/Memory.c:176", internal=False)
 
     def stop(self):
         try:

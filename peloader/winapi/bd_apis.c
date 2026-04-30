@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <dirent.h>
+#include <sys/stat.h>
 #include <wchar.h>
 
 #include "winnt_types.h"
@@ -39,6 +40,209 @@ queue_t *PluginsQueue = NULL;
 
 extern void WINAPI SetLastError(DWORD dwErrCode);
 
+typedef struct _find_handle {
+    char magic[4];
+    char *base_path;
+    size_t count;
+    size_t index;
+    char **names;
+    uint8_t *attrs;
+    uint64_t *sizes;
+} find_handle_t;
+
+static void free_plugins_queue(void) {
+    if (PluginsQueue == NULL) {
+        return;
+    }
+
+    if (PluginsQueue->data != NULL) {
+        for (size_t index = 0; index < PluginsQueue->size; index++) {
+            free(PluginsQueue->data[index]);
+        }
+        free(PluginsQueue->data);
+    }
+
+    free(PluginsQueue);
+    PluginsQueue = NULL;
+}
+
+static void free_find_handle(find_handle_t *handle) {
+    size_t index;
+
+    if (handle == NULL) {
+        return;
+    }
+
+    free(handle->base_path);
+    if (handle->names != NULL) {
+        for (index = 0; index < handle->count; index++) {
+            free(handle->names[index]);
+        }
+    }
+    free(handle->names);
+    free(handle->attrs);
+    free(handle->sizes);
+    free(handle);
+}
+
+static int compare_plugin_names(const void *lhs, const void *rhs) {
+    const char *const *left = (const char *const *)lhs;
+    const char *const *right = (const char *const *)rhs;
+    return strcmp(*left, *right);
+}
+
+static char *translate_find_directory(const char *path) {
+    char *translated = (char *)calloc(strlen(path) + 2, sizeof(char));
+    size_t len;
+
+    if (translated == NULL) {
+        return NULL;
+    }
+
+    memcpy(translated, path, strlen(path));
+    while (strchr(translated, '\\')) {
+        *strchr(translated, '\\') = '/';
+    }
+
+    if ((translated[0] == 'c' || translated[0] == 'C') && translated[1] == ':' && translated[2] == '/') {
+        memmove(translated, translated + 3, strlen(translated + 3) + 1);
+    }
+
+    len = strlen(translated);
+    while (len > 0 && (translated[len - 1] == '*' || translated[len - 1] == '/')) {
+        translated[len - 1] = '\0';
+        len--;
+    }
+
+    if (len > 0) {
+        translated[len] = '/';
+        translated[len + 1] = '\0';
+    }
+
+    return translated;
+}
+
+static int enumerate_directory(const char *directory_path, find_handle_t **out_handle) {
+    DIR *dir = opendir(directory_path);
+    struct dirent *entry = NULL;
+    char **filenames = NULL;
+    uint8_t *attrs = NULL;
+    uint64_t *sizes = NULL;
+    size_t count = 0;
+    size_t capacity = 0;
+    find_handle_t *handle = NULL;
+
+    if (dir == NULL) {
+        return -1;
+    }
+
+    while ((entry = readdir(dir)) != NULL) {
+        struct stat st;
+        size_t name_len;
+        char *full_path;
+        char *filename_copy;
+
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
+            continue;
+        }
+
+        name_len = strlen(entry->d_name);
+        full_path = (char *)malloc(strlen(directory_path) + name_len + 1);
+        if (full_path == NULL) {
+            closedir(dir);
+            goto error;
+        }
+
+        memcpy(full_path, directory_path, strlen(directory_path));
+        memcpy(full_path + strlen(directory_path), entry->d_name, name_len + 1);
+
+        if (stat(full_path, &st) != 0) {
+            free(full_path);
+            continue;
+        }
+        free(full_path);
+
+        if (count == capacity) {
+            size_t new_capacity = capacity == 0 ? 64 : capacity * 2;
+            char **new_filenames = (char **)realloc(filenames, sizeof(char *) * new_capacity);
+            uint8_t *new_attrs = (uint8_t *)realloc(attrs, sizeof(uint8_t) * new_capacity);
+            uint64_t *new_sizes = (uint64_t *)realloc(sizes, sizeof(uint64_t) * new_capacity);
+            if (new_filenames == NULL) {
+                closedir(dir);
+                goto error;
+            }
+            if (new_attrs == NULL || new_sizes == NULL) {
+                free(new_filenames);
+                closedir(dir);
+                goto error;
+            }
+            filenames = new_filenames;
+            attrs = new_attrs;
+            sizes = new_sizes;
+            capacity = new_capacity;
+        }
+
+        filename_copy = (char *)malloc(name_len + 1);
+        if (filename_copy == NULL) {
+            closedir(dir);
+            goto error;
+        }
+        memcpy(filename_copy, entry->d_name, name_len + 1);
+        filenames[count++] = filename_copy;
+        attrs[count - 1] = S_ISDIR(st.st_mode) ? FILE_ATTRIBUTE_DIRECTORY : FILE_ATTRIBUTE_ARCHIVE;
+        sizes[count - 1] = S_ISDIR(st.st_mode) ? 0 : (uint64_t)st.st_size;
+    }
+
+    closedir(dir);
+    qsort(filenames, count, sizeof(char *), compare_plugin_names);
+    handle = (find_handle_t *)calloc(1, sizeof(find_handle_t));
+    if (handle == NULL) {
+        goto error;
+    }
+    memcpy(handle->magic, "FDIR", 4);
+    handle->base_path = strdup(directory_path);
+    handle->count = count;
+    handle->index = 0;
+    handle->names = filenames;
+    handle->attrs = attrs;
+    handle->sizes = sizes;
+    *out_handle = handle;
+    return (int)count;
+
+error:
+    free(attrs);
+    free(sizes);
+    if (filenames != NULL) {
+        for (size_t index = 0; index < count; index++) {
+            free(filenames[index]);
+        }
+        free(filenames);
+    }
+    return -1;
+}
+
+static BOOL populate_find_data(LPWIN32_FIND_DATAA lpFindFileData, const char *name, uint8_t attr, uint64_t size) {
+    union Size file_size;
+    size_t name_len = strlen(name);
+
+    file_size.size = size;
+    lpFindFileData->dwFileAttributes = attr;
+    lpFindFileData->ftCreationTime.dwLowDateTime = 0x3AACDE5A;
+    lpFindFileData->ftCreationTime.dwHighDateTime = 0x01D6E798;
+    lpFindFileData->ftLastAccessTime.dwLowDateTime = 0xDCBD7A00;
+    lpFindFileData->ftLastAccessTime.dwHighDateTime = 0x01D6E8C3;
+    lpFindFileData->ftLastWriteTime.dwLowDateTime = 0xDCBD7A00;
+    lpFindFileData->ftLastWriteTime.dwHighDateTime = 0x01D6E8C3;
+    lpFindFileData->nFileSizeHigh = file_size.high;
+    lpFindFileData->nFileSizeLow = file_size.low;
+    lpFindFileData->dwReserved0 = 0;
+    lpFindFileData->dwReserved1 = 0;
+    memcpy(lpFindFileData->cFileName, name, name_len);
+    lpFindFileData->cFileName[name_len] = 0;
+    lpFindFileData->cAlternateFileName[0] = 0;
+    return true;
+}
+
 void* queue_read(queue_t *queue) {
     if (queue->tail == queue->head) {
         return NULL;
@@ -61,149 +265,35 @@ int queue_write(queue_t *queue, void* handle) {
 STATIC BOOL WINAPI FindClose(HANDLE hFindFile)
 {
     DebugLog("%p", hFindFile);
-    if (strncmp((char*) hFindFile, "PLGN", 4) == 0) {
-        free(PluginsQueue);
+    if (hFindFile != NULL && strncmp((char*) hFindFile, "FDIR", 4) == 0) {
+        free_find_handle((find_handle_t *)hFindFile);
     }
 
+    SetLastError(0);
     return true;
 }
 
 STATIC HANDLE WINAPI FindFirstFileA(LPCSTR lpFileName, LPWIN32_FIND_DATAA lpFindFileData)
 {
-    union Size FileSize;
+    find_handle_t *find_handle = NULL;
     DebugLog("%p [%s], %p", lpFileName, lpFileName, lpFindFileData);
-    if (strstr(lpFileName, "Plugins\\*") != NULL) {
-
-        int file_count = sizeof(filenames) / sizeof(char *);
-        int count = 0;
-
-        // allocate queue
-        PluginsQueue = (queue_t*) malloc(sizeof(queue_t));
-        PluginsQueue->head = 0;
-        PluginsQueue->tail = 0;
-        PluginsQueue->size = file_count + 1;
-        PluginsQueue->data = (void **)malloc(sizeof(void*) * file_count);
-
-        while (count < file_count) {
-            char *filename = (char*) malloc(strlen(filenames[count]) + 1);
-            memset(filename, 0, strlen(filenames[count]) + 1);
-            strncpy(filename, filenames[count], strlen(filenames[count]));
-            int res = queue_write(PluginsQueue, (void*)filename);
-            count++;
-        }
-
-        // Unixify path
-        char *ParentPath = (char *) calloc(strlen(lpFileName) + 1, sizeof(char));
-        strncpy(ParentPath, lpFileName, strlen(lpFileName));
-
-        while (strchr(ParentPath, '\\'))
-            *strchr(ParentPath, '\\') = '/';
-
-        if (ParentPath[strlen(ParentPath) - 1] == '*') {
-            ParentPath[strlen(ParentPath) - 1] = '\0';
-        }
-
-        strncpy(PluginsFullPath, ParentPath, strlen(ParentPath));
-        free(ParentPath);
-
-        // Get first plugin from the queue
-        char *FirstFileName = (char*) queue_read(PluginsQueue);
-        DebugLog("\"%s\" got from the queue", FirstFileName);
-
-        // Calculate full path to the plugin
-        char *FullPath = (char*) malloc(strlen(PluginsFullPath) + strlen(FirstFileName) + 1);
-        memset(FullPath, 0, strlen(PluginsFullPath) + strlen(FirstFileName) + 1);
-        strncpy(FullPath, PluginsFullPath, strlen(PluginsFullPath));
-        strncpy(&FullPath[strlen(PluginsFullPath)], FirstFileName, strlen(FirstFileName));
-
-        if ((strcmp(FirstFileName, ".") == 0) || (strcmp(FirstFileName, "..") == 0)) {
-            FileSize.size = (uint64_t) 0;
-            lpFindFileData->dwFileAttributes = FILE_ATTRIBUTE_DIRECTORY;
-        }
-        else {
-            lpFindFileData->dwFileAttributes = FILE_ATTRIBUTE_ARCHIVE;
-            // Get size of the plugin file
-            FILE *fp = fopen(FullPath, "r");
-            if (fp == NULL)
-                goto error;
-            fseek(fp, 0, SEEK_END);
-            int64_t size = ftell(fp);
-
-            fclose(fp);
-            FileSize.size = size;
-        }
-        free(FullPath);
-
-        lpFindFileData->ftCreationTime.dwLowDateTime = 0x3AACDE5A;
-        lpFindFileData->ftCreationTime.dwHighDateTime = 0x01D6E798;
-        lpFindFileData->ftLastAccessTime.dwLowDateTime = 0xDCBD7A00;
-        lpFindFileData->ftLastAccessTime.dwHighDateTime = 0x01D6E8C3;
-        lpFindFileData->ftLastWriteTime.dwLowDateTime = 0xDCBD7A00;
-        lpFindFileData->ftLastWriteTime.dwHighDateTime = 0x01D6E8C3;
-        lpFindFileData->nFileSizeHigh = FileSize.high;
-        lpFindFileData->nFileSizeLow = FileSize.low;
-        lpFindFileData->dwReserved0 = 0;
-        lpFindFileData->dwReserved1 = 0;
-        memcpy(lpFindFileData->cFileName, FirstFileName, strlen(FirstFileName));
-        lpFindFileData->cFileName[strlen(FirstFileName)] = 0;
-        lpFindFileData->cAlternateFileName[0] = 0;
-        return (HANDLE) "PLGN";
-    }
-    else {
-        lpFindFileData->dwFileAttributes = FILE_ATTRIBUTE_ARCHIVE;
-
-        PCHAR filename_copy = (PCHAR) malloc(strlen(lpFileName) + 1);
-        memset(filename_copy, 0, strlen(lpFileName) + 1);
-        memcpy(filename_copy, lpFileName, strlen(lpFileName));
-        uintptr_t filename_copy_original_ptr = (uintptr_t) filename_copy;
-        // Translate path seperator.
-        while (strchr(filename_copy, '\\'))
-            *strchr(filename_copy, '\\') = '/';
-
-        if ((filename_copy[0] == 'c' || filename_copy[0] == 'C') && filename_copy[1] == ':' && filename_copy[2] == '/') {
-            filename_copy = &filename_copy[3];
-        }
-
-        int64_t size;
-
-#if defined(SHARED_MEM) || defined(HONGGFUZZ_FUZZING)
-        if (SCAN_STARTED && strncmp(filename_copy, g_mmap_file.filename, strlen(g_mmap_file.filename)) == 0) {
-                DebugLog("Using shared memory on FindFirstFileA");
-                size = g_mmap_file.size;
-        } else {
-#endif
-        // Get size of the file
-        FILE *fp = fopen(filename_copy, "r");
-        if (fp == NULL)
+    if (strchr(lpFileName, '*') != NULL) {
+        char *directory_path = translate_find_directory(lpFileName);
+        if (directory_path == NULL) {
             goto error;
-        fseek(fp, 0, SEEK_END);
-        size = ftell(fp);
-
-        fclose(fp);
-
-#if defined(SHARED_MEM) || defined(HONGGFUZZ_FUZZING)
         }
-#endif
-        FileSize.size = size;
-
-        lpFindFileData->ftCreationTime.dwLowDateTime = 0x3AACDE5A;
-        lpFindFileData->ftCreationTime.dwHighDateTime = 0x01D6E798;
-        lpFindFileData->ftLastAccessTime.dwLowDateTime = 0xDCBD7A00;
-        lpFindFileData->ftLastAccessTime.dwHighDateTime = 0x01D6E8C3;
-        lpFindFileData->ftLastWriteTime.dwLowDateTime = 0xDCBD7A00;
-        lpFindFileData->ftLastWriteTime.dwHighDateTime = 0x01D6E8C3;
-        lpFindFileData->nFileSizeHigh = FileSize.high;
-        lpFindFileData->nFileSizeLow = FileSize.low;
-        lpFindFileData->dwReserved0 = 0;
-        lpFindFileData->dwReserved1 = 0;
-        memcpy(lpFindFileData->cFileName, lpFileName, strlen(lpFileName));
-        lpFindFileData->cFileName[strlen(lpFileName)] = 0;
-        lpFindFileData->cAlternateFileName[0] = 0;
-
-        filename_copy = (PCHAR) filename_copy_original_ptr;
-        free(filename_copy);
-
-        return (HANDLE) "FIND";
+        if (enumerate_directory(directory_path, &find_handle) <= 0) {
+            free(directory_path);
+            goto error;
+        }
+        free(directory_path);
+        if (populate_find_data(lpFindFileData, find_handle->names[0], find_handle->attrs[0], find_handle->sizes[0]) == false) {
+            free_find_handle(find_handle);
+            goto error;
+        }
+        find_handle->index = 1;
+        SetLastError(0);
+        return (HANDLE)find_handle;
     }
 
 error:
@@ -216,52 +306,24 @@ STATIC BOOL WINAPI FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFile
     union Size FileSize;
     DebugLog("%p, %p", hFindFile, lpFindFileData);
 
-    if (strncmp((char*)hFindFile, "PLGN", 4) == 0) {
-        // Get plugin filename from the queue
-        char* PluginFileName = (char*) queue_read(PluginsQueue);
-        if (PluginFileName == NULL) {
+    if (hFindFile != NULL && strncmp((char*)hFindFile, "FDIR", 4) == 0) {
+        find_handle_t *find_handle = (find_handle_t *)hFindFile;
+        if (find_handle->index >= find_handle->count) {
             SetLastError(0x12); // ERROR_NO_MORE_FILES
             return false;
         }
-
-        DebugLog("%s got from the queue", PluginFileName);
-
-        // Calculate full path to the plugin
-        char* FullPath = (char*) malloc(strlen(PluginsFullPath) + strlen(PluginFileName) + 1);
-        memset(FullPath, 0, strlen(PluginsFullPath) + strlen(PluginFileName) + 1);
-        strncpy(FullPath, PluginsFullPath, strlen(PluginsFullPath));
-        strncpy(&FullPath[strlen(PluginsFullPath)], PluginFileName, strlen(PluginFileName));
-
-        if ((strcmp(PluginFileName, ".") == 0) || (strcmp(PluginFileName, "..") == 0)) {
-            lpFindFileData->dwFileAttributes = FILE_ATTRIBUTE_DIRECTORY;
-            FileSize.size = (uint64_t) 0;
-        }
-        else {
-            lpFindFileData->dwFileAttributes = FILE_ATTRIBUTE_ARCHIVE;
-            // Get size of the plugin file
-            FILE *fp = fopen(FullPath, "r");
-            fseek(fp, 0, SEEK_END);
-            int64_t size = ftell(fp);
-            fclose(fp);
-            FileSize.size = size;
-        }
-
-        lpFindFileData->ftCreationTime.dwLowDateTime = 0x3AACDE5A;
-        lpFindFileData->ftCreationTime.dwHighDateTime = 0x01D6E798;
-        lpFindFileData->ftLastAccessTime.dwLowDateTime = 0xDCBD7A00;
-        lpFindFileData->ftLastAccessTime.dwHighDateTime = 0x01D6E8C3;
-        lpFindFileData->ftLastWriteTime.dwLowDateTime = 0xDCBD7A00;
-        lpFindFileData->ftLastWriteTime.dwHighDateTime = 0x01D6E8C3;
-        lpFindFileData->nFileSizeHigh = FileSize.high;
-        lpFindFileData->nFileSizeLow = FileSize.low;
-        lpFindFileData->dwReserved0 = 0;
-        lpFindFileData->dwReserved1 = 0;
-        memcpy(lpFindFileData->cFileName, PluginFileName, strlen(PluginFileName));
-        lpFindFileData->cFileName[strlen(PluginFileName)] = 0;
-        lpFindFileData->cAlternateFileName[0] = 0;
+        populate_find_data(
+            lpFindFileData,
+            find_handle->names[find_handle->index],
+            find_handle->attrs[find_handle->index],
+            find_handle->sizes[find_handle->index]
+        );
+        find_handle->index += 1;
+        SetLastError(0);
         return true;
     }
 
+    SetLastError(ERROR_FILE_NOT_FOUND);
     return false;
 
 }
@@ -443,37 +505,32 @@ static HANDLE WINAPI LoadLibraryA(char *lpFileName)
 STATIC BOOL WINAPI CreateDirectoryA(LPCSTR lpPathName, PVOID lpSecurityAttributes)
 {
     DebugLog("%p [%s]", lpPathName, lpPathName);
-
-    /*
     struct stat st = {0};
-
-    PCHAR filename_copy = (PCHAR) malloc(strlen(lpPathName) + 1);
-    memset(filename_copy, 0, strlen(lpPathName) + 1);
+    PCHAR filename_copy = (PCHAR)calloc(strlen(lpPathName) + 1, sizeof(char));
+    BOOL result = true;
+    if (filename_copy == NULL) {
+        SetLastError(ERROR_FILE_NOT_FOUND);
+        return false;
+    }
     memcpy(filename_copy, lpPathName, strlen(lpPathName));
-    uintptr_t filename_copy_original_ptr = (uintptr_t) filename_copy;
 
     // Translate path seperator.
     while (strchr(filename_copy, '\\'))
         *strchr(filename_copy, '\\') = '/';
 
-    // I'm just going to tolower() everything.
-    for (char *t = filename_copy; *t; t++)
-        *t = tolower(*t);
-
-    if (filename_copy[0] == 'c' && filename_copy[1] == ':' && filename_copy[2] == '/') {
-        filename_copy[1] = '.';
-        filename_copy = &filename_copy[1];
+    if ((filename_copy[0] == 'c' || filename_copy[0] == 'C') && filename_copy[1] == ':' && filename_copy[2] == '/') {
+        memmove(filename_copy, filename_copy + 3, strlen(filename_copy + 3) + 1);
     }
 
     if (stat(filename_copy, &st) == -1) {
-        mkdir(filename_copy, 0700);
+        if (mkdir(filename_copy, 0700) != 0) {
+            result = false;
+        }
     }
 
-    //filename_copy = filename_copy_original_ptr;
-    //free(filename_copy);
-    */
-   
-    return true;
+    free(filename_copy);
+    result ? SetLastError(0) : SetLastError(ERROR_FILE_NOT_FOUND);
+    return result;
 }
 
 HANDLE WINAPI FindFirstFileW(PWCHAR lpFileName, PVOID lpFindFileData)
